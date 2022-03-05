@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Resources\UserCollection;
+use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +18,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/foo', '\App\Http\Controllers\TestController@foo');
+Route::get('/bar', '\App\Http\Controllers\TestController@bar');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+//Route::get('/user/{id}', function ($id) {
+//    return new UserResource(User::findOrFail($id));
+//});
+//
+//Route::get('/users', function () {
+//    return  UserResource::collection (User::all());
+//});
+
+Route::get('/users', function () {
+    return new \App\Http\Resources\User(User::all()->skip(2));
 });
