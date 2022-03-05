@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('/posts', '\App\Http\Controllers\PostController');
+Route::resource('/image', '\App\Http\Controllers\ImageController');

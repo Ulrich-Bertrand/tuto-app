@@ -19,4 +19,12 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    /**
+     * Get the image associated with the post.
+     */
+    public function image()
+    {
+        return $this->hasOne(Image::class);
+    }
+
 }
